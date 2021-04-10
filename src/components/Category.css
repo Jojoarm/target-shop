@@ -1,0 +1,21 @@
+.products__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.category__title {
+  padding: 30px;
+}
+.category__title span {
+  padding: 5px;
+  border-radius: 5px;
+  background-color: rgb(32, 39, 97);
+  color: #fff;
+}
+
+.products__row {
+  display: flex;
+  max-width: 1000px;
+  flex-wrap: wrap;
+  padding-left: 20px;
+}

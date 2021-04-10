@@ -7,7 +7,7 @@ const Product = ({ product }) => {
         <div className="product">
             <img src={product.media.source} alt={product.name} />
             <div className="product__info">
-                <p>{product.name}</p>
+                <p className="product__name">{product.name}</p>
                 <p className="product__price">
                     <small>₦</small>  
                     <strong>{product.price.formatted}</strong>  
@@ -18,7 +18,7 @@ const Product = ({ product }) => {
                     <p>🌟</p>
                 </div>
             </div> 
-            {/* <button>Add to Cart</button>  */}
+            {/* <button>View Product</button>  */}
         </div>
     )
 }

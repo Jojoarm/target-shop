@@ -1,5 +1,4 @@
 import { Typography } from '@material-ui/core'
-import { LocationOnOutlined } from '@material-ui/icons'
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { commerce } from '../lib/commerce'
@@ -7,7 +6,7 @@ import Product from './Product'
 import './ProductInfo.css'
 
 const ProductInfo = ({match}) => {
-    console.log(match)
+    // console.log(match)
     const [product, setProduct] = useState([])
 
     const fetchProduct = async () => {
@@ -20,10 +19,7 @@ const ProductInfo = ({match}) => {
         fetchProduct()
     }, [product])
 
-    console.log(product)
-
     // const product = products?.filter(item => item.id === match.params.id)
-    console.log(product)
 
     return (
         <div className="product__infoContainer">
