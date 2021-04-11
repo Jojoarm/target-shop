@@ -1,5 +1,5 @@
 .cart__media {
-  height: 260px;
+  height: 260px !important;
 }
 
 .cart__content {
@@ -13,5 +13,19 @@
 
 .cart__buttons {
   display: flex;
+  justify-content: space-between;
   align-items: center;
+  border: 2px solid rgb(32, 39, 97);
+  border-radius: 5px;
+  width: 80px;
+  height: 30px;
+}
+.cart__buttons button {
+  width: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  height: 25px;
+  border: none;
+  background-color: rgb(203, 207, 238);
+  cursor: pointer;
 }

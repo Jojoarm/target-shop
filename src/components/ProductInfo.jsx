@@ -1,4 +1,4 @@
-import { Typography } from '@material-ui/core'
+import { CardMedia, Typography } from '@material-ui/core'
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { commerce } from '../lib/commerce'
@@ -24,19 +24,6 @@ const ProductInfo = ({match}) => {
         fetchProduct()
     }, [match])
 
-    // const fetchCart = async () => {
-    //     const response = await commerce.cart.retrieve();
-    //     setCart(response)
-    // }
-    
-    
-    // const handleAddToBasket = async (productId, quantity) => {
-    //     //Adding products to the commerce.js cart
-    //     const item = await commerce.cart.add(productId, quantity)
-    //     //We set the cart after the item has been added
-    //     setCart(item.cart)
-    // }
-
     const addtoBasket = () => {
         //dispatch the item into the data layer
         dispatch({
@@ -58,7 +45,8 @@ const ProductInfo = ({match}) => {
             </div>
             <div className="product__details">
                 <div className="product__img">
-                    <img src={product?.media?.source} alt={product?.name} />
+                    <CardMedia style={{ width: '300px', height: '300px' }} image={product?.media?.source} alt={product?.name}  />
+                    {/* <img src={product?.media?.source} alt={product?.name} /> */}
                 </div>
                 <div className="product__information">
                     <h2 className="product__name">{product?.name}</h2>

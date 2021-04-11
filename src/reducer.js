@@ -3,9 +3,10 @@ export const initialState = {
     user: null,
 }
 
+
 //Function to get the cart total amount instead of using for loop
 export const getBasketTotal = (basket) =>
-    basket?.reduce((amount, item) => item.price + amount, 0); 
+    basket?.reduce((amount, item) => item.quantity*parseInt(item.price.replace(/,/g, '')) + amount, 0); 
 
 //A function to get the total quantity of items in the basket
 export const getCartTotal = (basket) => basket?.reduce((amount,item) => item.quantity + amount, 0)
@@ -32,34 +33,54 @@ const reducer = (state, action) => {
                     basket: [...state.basket, action.item]
                 }
             }
-            
-        
-        // case 'REMOVE_FROM_BASKET':
-        //     const index = state.basket.findIndex(
-        //         (basketItem) => basketItem.id === action.id
-        //     )
-        //     let newBasket = [...state.basket];
 
-        //     if(index >= 0) {
-        //         newBasket.splice(index, 1);
-        //     }
-        //     else {
-        //         console.warn(`Cant remove product (id: ${action.id}) as it is not in the basket!`)
-        //     }
-        //     return {
-        //         ...state,
-        //         basket: newBasket
-        //     }
+        case 'INCREASE_PRODUCT_QUANTITY':
+            const increaseIndex = state.basket.findIndex(
+                (basketItem) => basketItem.id === action.id
+            )
+            let newCart = [...state.basket]
+            newCart[increaseIndex ].quantity +=1
+            return {basket: [...newCart]}
+        
+        case 'DECREASE_PRODUCT_QUANTITY':
+            const decreaseIndex = state.basket.findIndex(
+                (basketItem) => basketItem.id === action.id
+            )
+            let decreasedCart = [...state.basket]
+            if (decreasedCart[decreaseIndex].quantity <= 1){
+                decreasedCart.splice(decreaseIndex, 1)
+            } else {
+                decreasedCart[decreaseIndex].quantity -= 1
+            }
+            return {basket: [...decreasedCart]}
+                 
+        case 'REMOVE_FROM_BASKET':
+            let newBasket = [...state.basket];
+
+            const itemIndex = state.basket.findIndex(
+                (basketItem) => basketItem.id === action.id
+            )
+
+            if(itemIndex >= 0) {
+                newBasket.splice(itemIndex, 1);
+            }
+            else {
+                console.warn(`Cant remove product (id: ${action.id}) as it is not in the basket!`)
+            }
+            return {
+                ...state,
+                basket: newBasket
+            }
+
+        case 'EMPTY_CART':
+            return {...state, basket: [] }
+            
         // case 'SET_USER':
         //     return {
         //         ...state, 
         //         user: action.user
         //     }
-        // case 'EMPTY_BASKET':
-        //     return {
-        //         ...state, 
-        //         basket: []
-        //     }
+        
         default:
             return state
 
