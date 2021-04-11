@@ -18,7 +18,6 @@ const Product = ({ product }) => {
                     <p>🌟</p>
                 </div>
             </div> 
-            {/* <button>View Product</button>  */}
         </div>
     )
 }

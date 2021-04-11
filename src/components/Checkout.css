@@ -1,0 +1,18 @@
+.card__details {
+  display: flex;
+  margin-top: 10%;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.empty__button {
+  min-width: 150px;
+}
+
+.checkout__button {
+  min-width: 150px;
+}
+
+.toolbar {
+  margin-top: 5%;
+}

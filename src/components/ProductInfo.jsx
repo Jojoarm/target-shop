@@ -2,12 +2,17 @@ import { Typography } from '@material-ui/core'
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { commerce } from '../lib/commerce'
+import { useStateValue } from '../StateContext'
 import Product from './Product'
 import './ProductInfo.css'
 
 const ProductInfo = ({match}) => {
     // console.log(match)
+    
     const [product, setProduct] = useState([])
+    const [{ basket }, dispatch] = useStateValue();
+
+    // const [cart, setCart] = useState({});
 
     const fetchProduct = async () => {
         const { data } = await commerce.products.list();
@@ -17,9 +22,34 @@ const ProductInfo = ({match}) => {
 
     useEffect(() =>{
         fetchProduct()
-    }, [product])
+    }, [match])
 
-    // const product = products?.filter(item => item.id === match.params.id)
+    // const fetchCart = async () => {
+    //     const response = await commerce.cart.retrieve();
+    //     setCart(response)
+    // }
+    
+    
+    // const handleAddToBasket = async (productId, quantity) => {
+    //     //Adding products to the commerce.js cart
+    //     const item = await commerce.cart.add(productId, quantity)
+    //     //We set the cart after the item has been added
+    //     setCart(item.cart)
+    // }
+
+    const addtoBasket = () => {
+        //dispatch the item into the data layer
+        dispatch({
+            type: 'ADD_TO_BASKET',
+            item: {
+                id: product.id,
+                title: product.name,
+                image: product?.media?.source,
+                price: product?.price?.formatted,
+                quantity: 1,
+            }, 
+        })
+    }
 
     return (
         <div className="product__infoContainer">
@@ -39,7 +69,7 @@ const ProductInfo = ({match}) => {
                         <strong>{product?.price?.formatted}</strong>  
                     </div>
                     <div className="product__buttons">
-                        <button className="basket__button">Add to Basket</button>
+                        <button className="basket__button" onClick={addtoBasket}>Add to Basket</button>
                         <button className="buynow__button">Buy Now</button>
                     </div> 
                 </div>
@@ -51,7 +81,6 @@ const ProductInfo = ({match}) => {
                         <div key={product.id}>
                             <Link style={{ textDecoration: 'none', color: 'black' }} to={`/product-details/${product.id}`} >
                                 <Product product={product} />
-                                {/* {location.reload()} */}
                             </Link> 
                         </div>
                     ))}

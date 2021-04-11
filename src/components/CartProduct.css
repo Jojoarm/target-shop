@@ -1,0 +1,17 @@
+.cart__media {
+  height: 260px;
+}
+
+.cart__content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart__actions {
+  justify-content: space-between;
+}
+
+.cart__buttons {
+  display: flex;
+  align-items: center;
+}

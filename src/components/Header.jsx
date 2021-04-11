@@ -5,12 +5,16 @@ import SearchIcon from '@material-ui/icons/Search';
 import PersonIcon from '@material-ui/icons/Person';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { Link } from 'react-router-dom';
+import { useStateValue } from '../StateContext'
+import { getCartTotal } from '../reducer';
 
 const Header = () => {
+    const [{basket}, dispatch] = useStateValue()
+
     return (
         <div className="header">
                 <div className="header_logo">
-                    <Link to="/">
+                    <Link style={{ textDecoration: 'none', color: 'white' }} to="/">
                         <img className="header_img" src={headerLogo} alt="header_logo" />
                     </Link>
                     <div className="header_name">
@@ -35,10 +39,12 @@ const Header = () => {
                     <span className="header_logIn">Log in</span>
                 </div>
             </div>
+            <Link style={{ textDecoration: 'none', color: 'white' }} to="/checkout" >
             <div className="cart_basket">
-                <span className="header_optionLineTwo header_basketCount">0</span>
+                <span className="header_optionLineTwo header_basketCount">{getCartTotal(basket)}</span>
                 <ShoppingCartIcon />
             </div>
+            </Link>
         </div>
 
     )
