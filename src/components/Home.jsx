@@ -2,10 +2,20 @@ import React from 'react'
 import './Home.css'
 import Product from './Product'
 import {Link}  from 'react-router-dom'
+import { CircularProgress } from '@material-ui/core'
 
 const Home = ({ products, categories }) => {
+
+    console.log(products)
     // console.log(products?.filter(product => product.sku == 'Top Selling'))
     
+      //If the product has not beeng fetch a circular loading should be shown
+      if (!products.length) return(
+        <div className="spinner">
+            <CircularProgress />
+        </div>
+    ) 
+
     return (
         <div className="home">
            <div className="home__container">

@@ -1,4 +1,4 @@
-import { CardMedia, Typography } from '@material-ui/core'
+import { CardMedia, CircularProgress, Typography } from '@material-ui/core'
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { commerce } from '../lib/commerce'
@@ -24,6 +24,7 @@ const ProductInfo = ({match}) => {
         fetchProduct()
     }, [match])
 
+    //Adding products to the cart
     const addtoBasket = () => {
         //dispatch the item into the data layer
         dispatch({
@@ -37,7 +38,13 @@ const ProductInfo = ({match}) => {
             }, 
         })
     }
-
+    
+    //If the product has not beeng fetch a circular loading should be shown
+    if (!product.name) return(
+        <div className="spinner">
+            <CircularProgress />
+        </div>
+    ) 
     return (
         <div className="product__infoContainer">
             <div className="product__category">

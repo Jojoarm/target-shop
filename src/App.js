@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import ProductInfo from './components/ProductInfo';
 import Category from './components/Category';
 import Checkout from './components/Checkout';
+import Order from './components/Order/Order';
 
 function App() {
   const [products, setProducts] = useState([])
@@ -59,6 +60,10 @@ function App() {
               <Route path="/checkout">
                 <Checkout />
               </Route>
+              <Route path="/order">
+                <Order />
+              </Route>
+              
           </Switch>
         </div>
     </Router>

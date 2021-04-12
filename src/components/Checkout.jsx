@@ -53,13 +53,14 @@ const Checkout = () => {
             </Typography>
             <div className="buttons">
                 <Button onClick={emptyCart} className="empty__button" size="large" type="button" variant="contained" color="secondary">Empty Cart</Button>
-                <Button component={Link} to="/checkout" className="checkout__button" size="large" type="button" variant="contained" color="primary">Checkout</Button>
+                <Link style={{ textDecoration: 'none'}} to="/order" >
+                    <Button className="checkout__button" size="large" type="button" variant="contained" color="primary">Place Order</Button>
+                </Link>
             </div>
         </div>
         </>
     )
-    // if(!cart.line_items) return 'Loading...'
-
+    
     return (
         <Container>
             <div className="toolbar" />
