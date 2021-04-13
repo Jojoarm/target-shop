@@ -1,3 +1,5 @@
+// import  firebase from "firebase"
+
 const firebaseConfig = {
     apiKey: "AIzaSyArrITypW_f_rPk-3QvzyyYzjOkuJxzFFw",
     authDomain: "e-commerce-shop-35a31.firebaseapp.com",
@@ -7,3 +9,8 @@ const firebaseConfig = {
     appId: "1:72666154451:web:329f30318ca4582b411b26",
     measurementId: "G-4JWL953GJM"
   };
+
+//Initialize firebase
+// firebase.initializeApp(firebaseConfig);
+
+export default firebaseConfig

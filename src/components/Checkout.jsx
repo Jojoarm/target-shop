@@ -49,7 +49,7 @@ const Checkout = () => {
         </Grid>
         <div className="card__details">
             <Typography variant="h5">
-                Subtotal: ₦{getBasketTotal(basket).toLocaleString('en')}
+                Subtotal: ₦{getBasketTotal(basket).toLocaleString('en')}.00
             </Typography>
             <div className="buttons">
                 <Button onClick={emptyCart} className="empty__button" size="large" type="button" variant="contained" color="secondary">Empty Cart</Button>

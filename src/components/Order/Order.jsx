@@ -4,6 +4,9 @@ import useStyles from './styles'
 import Login from './OrderForms/Login'
 import AddressForm from './OrderForms/AddressForm'
 import PaymentForms from './OrderForms/PaymentForms'
+import successImage from '../../assets/success.png'
+import deliveryImage from '../../assets/delivery.png'
+import { Link } from 'react-router-dom'
 
 const steps = ['Account', 'Delivery address', 'Payment']
 
@@ -11,7 +14,7 @@ const Order = () => {
     //For styling material ui
     const classes = useStyles();
     //Create a state to determine our stages movement in the page
-    const [activeStep, setActiveStep] = useState(1);
+    const [activeStep, setActiveStep] = useState(0);
     //Create a state to hold the delivery information 
     const [deliveryData, setDeliveryData] = useState({})
 
@@ -26,15 +29,25 @@ const Order = () => {
 
     //Confirmation component
     const Confirmation = () => (
-        <div>
-            Confirmation page boom
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-around'}}>
+            <img src={successImage} alt="success image" className="smiley" />
+            <Typography variant='h6' align="center"> Thank You! </Typography>
+            <Typography variant='h6' align="center"> Your order has been placed successfully </Typography>
+            <Typography variant='body1' align="center">
+                You will receive a confirmation message when your order is accepted and deliver underway
+            </Typography>
+            <img src={deliveryImage} alt="delivery image" className="smiley" />
+            <Link style={{ textDecoration: 'none', color: 'black' }} to='/' >
+                <Button type="submit" variant="contained" color="primary"> Continue Shopping </Button>
+            </Link>
+            
         </div>
     )
 
     //To determine what to display depending on the step we are on
     const Form = () => { switch (activeStep){
         case 0:
-            return <Login />
+            return <Login nextStep={nextStep} />
         case 1:
             return <AddressForm next={next} />
         case 2:
