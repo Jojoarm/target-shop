@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom'
 import { commerce } from '../lib/commerce'
 import Product from './Product'
 import './Category.css'
+import { CircularProgress } from '@material-ui/core'
 
 const Category = ({match}) => {
-    // console.log(match)
+    console.log(match)
     const [products, setProducts] = useState([])
 
     const fetchProducts = async () => {
@@ -19,6 +20,12 @@ const Category = ({match}) => {
     useEffect(() =>{
         fetchProducts()
     }, [])
+
+    if (!products.length) return(
+        <div className="spinner">
+            <CircularProgress />
+        </div>
+    ) 
 
 
     return (

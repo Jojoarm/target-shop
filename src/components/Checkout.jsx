@@ -6,6 +6,7 @@ import { useStateValue } from '../StateContext'
 import { getBasketTotal } from '../reducer';
 import sadSmiley from '../assets/sadface.png'
 import './Checkout.css'
+import FlipMove from 'react-flip-move';
 
 
 const Checkout = () => {

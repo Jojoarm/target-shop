@@ -3,6 +3,9 @@ import React, { useState, useEffect } from 'react';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import firebase from 'firebase';
 import firebaseConfig from '../../../firebase'
+import headerLogo from '../../../assets/logobrand.png'
+import { Button, Divider } from '@material-ui/core';
+import './Login.css'
 
 firebase.initializeApp(firebaseConfig);
 
@@ -14,7 +17,6 @@ const uiConfig = {
     // Options to use for signin
     signInOptions: [
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-      firebase.auth.FacebookAuthProvider.PROVIDER_ID,
       firebase.auth.PhoneAuthProvider.PROVIDER_ID,
     ],
     callbacks: {
@@ -33,63 +35,29 @@ const uiConfig = {
       });
       return () => unregisterAuthObserver(); // Make sure we un-register Firebase observers when the component unmounts.
     }, []);
-    console.log(firebase.auth().currentUser)
+    // console.log(firebase.auth().currentUser)
 
-    // if (!!isSignedIn) {
-    //     nextStep()
-    //   } 
-    //   return (
-    //     <div>
-    //         <h1>My App</h1>
-    //         <p>Please sign-in:</p>
-    //         <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
-    //     </div>
-    //   );
   
     if (!isSignedIn) {
       return (
-        <div>
-          <h1>My App</h1>
-          <p>Please sign-in:</p>
-          <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+        <div className="login__container">
+            <img className="header_img" src={headerLogo} alt="header_logo" />
+            <p style={{textAlign:"center"}}>Please sign-in to continue:</p>
+            <Divider />
+            <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
         </div>
       );
     } 
     return (
-      <div>
-        <h1>My App</h1>
+      <div className="login__container">
         <p>Welcome! You are now signed-in!</p>
-        <a onClick={() => firebase.auth().signOut()}>Sign-out</a>
-        <button onClick={nextStep}>Proceed with order</button>
+        <Divider />
+        <div className="login_buttons">
+            <Button variant="outlined" onClick={() => firebase.auth().signOut()}>Sign-out</Button>
+            <Button onClick={nextStep} variant="contained" color="primary">Proceed with order</Button>
+        </div>
       </div>
     );
   }
 
 export default Login
-
-
-// import firebaseConfig from '../../../firebase'
-// import * as firebaseui from "firebaseui";
-// import firebase from "firebase";
-
-// export class Login extends Component {
-//     componentDidMount() {
-//         const fbase = firebase.initializeApp(firebaseConfig);
-//         const uiConfig = {
-//           signInSuccessUrl: "https://netflix-clone-ankur.herokuapp.com/", //This URL is used to return to that page when we got success response for phone authentication.
-//           signInOptions: [firebase.auth.PhoneAuthProvider.PROVIDER_ID],
-//           tosUrl: "https://netflix-clone-ankur.herokuapp.com/"
-//         };
-//         var ui = new firebaseui.auth.AuthUI(firebase.auth());
-//         ui.start("#firebaseui-auth-container", uiConfig);
-//       }
-
-//     render() {
-//         return (
-//             <div>
-//                 <h1>REACT PHONE AUTHENTICATION</h1>
-//                 <div id="firebaseui-auth-container"></div>
-//             </div>
-//         )
-//     }
-// }

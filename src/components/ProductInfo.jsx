@@ -48,7 +48,9 @@ const ProductInfo = ({match}) => {
     return (
         <div className="product__infoContainer">
             <div className="product__category">
+            <Link to={`/category/${product.categories[0].id}`} >
                 <p>Back to Categories</p>
+            </Link>
             </div>
             <div className="product__details">
                 <div className="product__img">

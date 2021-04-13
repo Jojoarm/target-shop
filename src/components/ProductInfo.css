@@ -12,6 +12,8 @@
   display: flex;
   width: 100%;
   justify-content: center;
+  opacity: 0;
+  animation: fade-in-down ease-in 0.5s 0.5s forwards;
 }
 
 .product__img {
@@ -34,6 +36,8 @@
   display: flex;
   flex-direction: column;
   width: 70%;
+  opacity: 0;
+  animation: fade-in ease-in 0.5s 1.5s forwards;
 }
 
 .product__name {
@@ -80,6 +84,8 @@
   margin-left: 5px;
   margin-right: 5px;
   overflow-x: scroll;
+  opacity: 0;
+  animation: fade-in-down ease-in 0.5s 1s forwards;
 }
 
 .spinner {
@@ -87,4 +93,33 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-down {
+  from {
+    transform: translateY(-2.5rem);
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-left {
+  from {
+    transform: translateX(100rem, -50%);
+  }
+  to {
+    transform: translateX(29rem, -50%);
+    opacity: 1;
+  }
 }
