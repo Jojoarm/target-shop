@@ -5,6 +5,18 @@ import { commerce } from '../lib/commerce'
 import { useStateValue } from '../StateContext'
 import Product from './Product'
 import './ProductInfo.css'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+
+// Import Swiper styles
+import 'swiper/swiper.scss';
+import 'swiper/components/navigation/navigation.scss';
+import 'swiper/components/pagination/pagination.scss';
+import 'swiper/components/scrollbar/scrollbar.scss';
+
+// install Swiper modules
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
+
 
 const ProductInfo = ({match}) => {
     // console.log(match)
@@ -15,7 +27,8 @@ const ProductInfo = ({match}) => {
     // const [cart, setCart] = useState({});
 
     const fetchProduct = async () => {
-        const { data } = await commerce.products.list();
+        const limit = 200;
+        const { data } = await commerce.products.list({limit: limit});  
         const dataSet = data?.filter(item => item.id === match.params.id)
         setProduct(dataSet[0])
     }
@@ -53,9 +66,12 @@ const ProductInfo = ({match}) => {
             </Link>
             </div>
             <div className="product__details">
-                <div className="product__img">
-                    <CardMedia style={{ width: '300px', height: '300px' }} image={product?.media?.source} alt={product?.name}  />
-                    {/* <img src={product?.media?.source} alt={product?.name} /> */}
+                <div className="product__info">
+                    <img className="product__img" src={product?.media?.source} alt={product?.name} />
+                    <div className="product__buttons">
+                        <button className="basket__button" onClick={addtoBasket}>Add to Basket</button>
+                        <button className="buynow__button">Buy Now</button>
+                    </div> 
                 </div>
                 <div className="product__information">
                     <h2 className="product__name">{product?.name}</h2>
@@ -65,10 +81,7 @@ const ProductInfo = ({match}) => {
                         <small>₦</small>  
                         <strong>{product?.price?.formatted}</strong>  
                     </div>
-                    <div className="product__buttons">
-                        <button className="basket__button" onClick={addtoBasket}>Add to Basket</button>
-                        <button className="buynow__button">Buy Now</button>
-                    </div> 
+                    
                 </div>
             </div>
             <div className = "related__products">
@@ -81,12 +94,11 @@ const ProductInfo = ({match}) => {
                             </Link> 
                         </div>
                     ))}
+                    {/* </Swiper> */}
                 </div>
             </div>
         </div>
     )
 }
-
-
 
 export default ProductInfo

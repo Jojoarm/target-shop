@@ -1,14 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Home.css'
 import Product from './Product'
 import {Link}  from 'react-router-dom'
 import { CircularProgress, Grid } from '@material-ui/core'
 import CategoryBanner from './CategoryBanner'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+
+// Import Swiper styles
+import 'swiper/swiper.scss';
+import 'swiper/components/navigation/navigation.scss';
+import 'swiper/components/pagination/pagination.scss';
+import 'swiper/components/scrollbar/scrollbar.scss';
+
+// install Swiper modules
+SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
+
 
 const Home = ({ products, categories }) => {
-
-    console.log(products?.filter(product => product.sku == 'Category banner'))
-    // console.log(products?.filter(product => product.sku == 'Top Selling'))
     
       //If the product has not beeng fetch a circular loading should be shown
       if (!products.length) return(
@@ -37,11 +46,11 @@ const Home = ({ products, categories }) => {
                     <div className="home__row">
                         {products?.filter(product => product.sku == 'Top Selling')
                         ?.map(product => (
-                            <div key={product.id}>
+                                <div key={product.id}>
                                 <Link style={{ textDecoration: 'none', color: 'black' }} to={`/product-details/${product.id}`} >
                                     <Product product={product} />
                                 </Link> 
-                            </div>
+                                </div>
                         ))}   
                     </div>
                 </div>
@@ -51,13 +60,13 @@ const Home = ({ products, categories }) => {
                 <p className="banner__title">Featured Categories!</p>
                 <div className="banner">
                 <Grid container justify="center" spacing={3}>
-                {products?.filter(product => product.sku == 'Category banner').map((product) => (
-                    <Grid item key={product.categories[0].id} xs={12} sm={6} md={4} lg={2}>
-                        <Link style={{ textDecoration: 'none', color: 'black' }} to={`/category/${product.categories[0].id}`} >
-                            <CategoryBanner product={product} />
-                        </Link>
-                    </Grid>
-                    ))}
+                        {products?.filter(product => product.sku == 'Category banner').map((product) => (
+                        <Grid item key={product.categories[0].id} xs={6} sm={6} md={4} lg={2}>
+                            <Link style={{ textDecoration: 'none', color: 'black' }} to={`/category/${product.categories[0].id}`} >
+                                <CategoryBanner product={product} />
+                            </Link>
+                        </Grid>
+                        ))}
                 </Grid>
                 </div>
             </div>

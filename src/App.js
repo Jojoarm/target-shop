@@ -19,7 +19,9 @@ function App() {
 
   const fetchProducts = async () => {
     //fetching the products from the commerce.js api
-    const { data } = await commerce.products.list();
+    //set the limit
+    const limit = 200;
+    const { data } = await commerce.products.list({limit: limit});
     setProducts(data)
   }
 
@@ -45,7 +47,7 @@ function App() {
   }, [])
 
   // console.log(categories)
-  // console.log(products)
+  // console.log('The products', products)
  
   return (
     <Router>

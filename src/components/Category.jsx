@@ -6,16 +6,18 @@ import './Category.css'
 import { CircularProgress } from '@material-ui/core'
 
 const Category = ({match}) => {
-    console.log(match)
+    // console.log(match)
     const [products, setProducts] = useState([])
 
+    // console.log('products are', products)
     const fetchProducts = async () => {
-        const { data } = await commerce.products.list();
+        const limit = 200;
+        const { data } = await commerce.products.list({limit: limit});
         const dataSet = data?.filter(item => item.categories[0].id === match.params.id)
         setProducts(dataSet)
     }
 
-    console.log(products)
+    // console.log(products)
 
     useEffect(() =>{
         fetchProducts()

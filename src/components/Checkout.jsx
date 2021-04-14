@@ -6,7 +6,6 @@ import { useStateValue } from '../StateContext'
 import { getBasketTotal } from '../reducer';
 import sadSmiley from '../assets/sadface.png'
 import './Checkout.css'
-import FlipMove from 'react-flip-move';
 
 
 const Checkout = () => {
@@ -53,9 +52,9 @@ const Checkout = () => {
                 Subtotal: ₦{getBasketTotal(basket).toLocaleString('en')}.00
             </Typography>
             <div className="buttons">
-                <Button onClick={emptyCart} className="empty__button" size="large" type="button" variant="contained" color="secondary">Empty Cart</Button>
+                <Button onClick={emptyCart} className="empty__button" type="button" variant="contained" color="secondary">Empty Cart</Button>
                 <Link style={{ textDecoration: 'none'}} to="/order" >
-                    <Button className="checkout__button" size="large" type="button" variant="contained" color="primary">Place Order</Button>
+                    <Button className="checkout__button" type="button" variant="contained" color="primary">Place Order</Button>
                 </Link>
             </div>
         </div>
