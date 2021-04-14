@@ -100,3 +100,35 @@
   font-weight: 800;
   /* margin: 0 10px; */
 }
+
+@media screen and (max-width: 768px) {
+  .header {
+    justify-content: space-between;
+  }
+  .header_logo {
+    width: 20%;
+    height: 25px;
+    margin: 0 10px;
+  }
+  .header_img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+  }
+  .header_name {
+    width: 100px;
+  }
+  .header_name h3 {
+    font-size: 12px;
+  }
+  .header_name span {
+    display: none;
+    font-size: 9px;
+  }
+  .header_search {
+    width: 30%;
+  }
+}
+
+@media screen and (max-width: 640px) {
+}
