@@ -9,14 +9,13 @@ import Category from './components/Category';
 import Checkout from './components/Checkout';
 import Order from './components/Order/Order';
 import Footer from './components/Footer';
+import { useStateValue } from './StateContext';
 
 function App() {
   const [products, setProducts] = useState([])
   const [categories, setCategories] = useState([])
-  
 
-  // console.log(cart)
-  // const [cart, setCart] = useState({});
+
 
   const fetchProducts = async () => {
     //fetching the products from the commerce.js api
@@ -32,14 +31,6 @@ function App() {
     setCategories(data)
   }
 
-//   const fetchCart = async () => {
-//     const response = await commerce.cart.retrieve();
-//     setCart(response)
-// }
-
-  // useEffect(() => {
-  //   fetchCart()
-  // }, [])
 
   useEffect(() =>{
     fetchProducts()

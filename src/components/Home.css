@@ -90,9 +90,15 @@
 .banner__container {
   background-color: #fff;
   width: 98%;
-  align-self: center;
+  display: flex;
+  flex-direction: column;
+  /* align-self: center; */
   margin-top: 20px;
   border-radius: 10px;
+}
+.banner {
+  display: flex;
+  align-self: center;
 }
 
 .banner__title {
@@ -133,7 +139,7 @@
 
 @media screen and (max-width: 640px) {
   .category__container {
-    height: 400px;
+    /* height: 400px; */
     width: 200px;
   }
   .category__container .title {

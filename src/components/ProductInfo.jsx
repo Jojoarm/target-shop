@@ -70,7 +70,9 @@ const ProductInfo = ({match}) => {
                     <img className="product__img" src={product?.media?.source} alt={product?.name} />
                     <div className="product__buttons">
                         <button className="basket__button" onClick={addtoBasket}>Add to Basket</button>
-                        <button className="buynow__button">Buy Now</button>
+                        <Link style={{ textDecoration: 'none'}} to="/order" >
+                            <button className="buynow__button" onClick={addtoBasket}>Buy Now</button>
+                        </Link>
                     </div> 
                 </div>
                 <div className="product__information">

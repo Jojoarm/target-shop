@@ -59,7 +59,7 @@ const Home = ({ products, categories }) => {
            <div className="banner__container">
                 <p className="banner__title">Featured Categories!</p>
                 <div className="banner">
-                <Grid container justify="center" spacing={3}>
+                <Grid container justifyContent="center" spacing={3}>
                         {products?.filter(product => product.sku == 'Category banner').map((product) => (
                         <Grid item key={product.categories[0].id} xs={6} sm={6} md={4} lg={2}>
                             <Link style={{ textDecoration: 'none', color: 'black' }} to={`/category/${product.categories[0].id}`} >
