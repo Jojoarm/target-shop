@@ -104,4 +104,13 @@
   .product__info .product__name {
     font-size: 10px;
   }
+  .product__banner {
+    padding: 10px;
+    width: 140px;
+    height: 140px;
+    min-width: 100px;
+    background-color: #fff;
+    z-index: 1;
+    cursor: pointer;
+  }
 }

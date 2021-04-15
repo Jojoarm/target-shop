@@ -8,6 +8,7 @@ import ProductInfo from './components/ProductInfo';
 import Category from './components/Category';
 import Checkout from './components/Checkout';
 import Order from './components/Order/Order';
+import Footer from './components/Footer';
 
 function App() {
   const [products, setProducts] = useState([])
@@ -65,8 +66,8 @@ function App() {
               <Route path="/order">
                 <Order />
               </Route>
-              
           </Switch>
+          <Footer />
         </div>
     </Router>
   );
